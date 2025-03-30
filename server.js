@@ -24,19 +24,21 @@ app.use(logger);
 // and fetch cookies credentials requirement 
 app.use(credentials);
 
-const allowedDomains = ['https://front-end-lemon-seven.vercel.app', 'https://mern-admin-dashboard-phi.vercel.app'];
+// const allowedDomains = ['https://front-end-lemon-seven.vercel.app', 'https://mern-admin-dashboard-phi.vercel.app'];
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedDomains.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // Access-Control-Allow-Credentials: true
-};
-
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (allowedDomains.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true, // Access-Control-Allow-Credentials: true
+// };
+let corsOptions = {
+  origin :  ['https://front-end-lemon-seven.vercel.app', 'https://mern-admin-dashboard-phi.vercel.app'],
+}
 // Cross Origin Resource Sharing
 app.use(cors(corsOptions));
 // app.use(cors({ origin: "https://mern-admin-dashboard-phi.vercel.app", credentials: true }));
