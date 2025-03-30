@@ -1,10 +1,6 @@
-// const { options } = require('../routes/root');
-// const allowedOrigins = require('./allowedOrigins')
 
-const allowedOrigins = [
-    'https://mern-admin-dashboard-phi.vercel.app',
-    'https://front-end-lemon-seven.vercel.app'
-];
+const allowedOrigins = require('./allowedOrigins')
+
 
 const corsOptions = {
     origin: (origin, callback) => {

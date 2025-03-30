@@ -4,7 +4,7 @@ const  cloudinary = require('cloudinary').v2;
 const path = require('path');
 const app = express();
 const cors = require('cors');
-// const corsOptions = require('./config/corsOptions')
+const corsOptions = require('./config/corsOptions')
 const {logger} = require('./middleware/logEvents');
 const  errorHandler = require('./middleware/errorHandler');
 const verifyJWT = require('./middleware/verifyJWT')
@@ -25,7 +25,8 @@ app.use(logger);
 app.use(credentials);
 
 // Cross Origin Resource Sharing
-app.use(cors('*'));
+app.use(cors(corsOptions));
+// app.use(cors('*'));
 // app.use(cors({ origin: "https://mern-admin-dashboard-phi.vercel.app", credentials: true }));
 // app.use(cors({ origin: "https://front-end-lemon-seven.vercel.app", credentials: true }));
 //  built-in middleware to handle urlencoded data
