@@ -25,8 +25,8 @@ app.use(logger);
 app.use(credentials);
 
 // Cross Origin Resource Sharing
-app.use(cors(corsOptions));
-// app.use(cors({ origin: "http://localhost:3001", credentials: true }));
+// app.use(cors(corsOptions));
+app.use(cors({ origin: "https://mern-admin-dashboard-phi.vercel.app", credentials: true }));
 //  built-in middleware to handle urlencoded data
 app.use(express.urlencoded({extended: false}))
 
