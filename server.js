@@ -4,7 +4,7 @@ const  cloudinary = require('cloudinary').v2;
 const path = require('path');
 const app = express();
 const cors = require('cors');
-const corsOptions = require('./config/corsOptions')
+// const corsOptions = require('./config/corsOptions')
 const {logger} = require('./middleware/logEvents');
 const  errorHandler = require('./middleware/errorHandler');
 const verifyJWT = require('./middleware/verifyJWT')
@@ -24,10 +24,23 @@ app.use(logger);
 // and fetch cookies credentials requirement 
 app.use(credentials);
 
+const allowedDomains = ['https://front-end-lemon-seven.vercel.app', 'https://mern-admin-dashboard-phi.vercel.app'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedDomains.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Access-Control-Allow-Credentials: true
+};
+
 // Cross Origin Resource Sharing
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 // app.use(cors({ origin: "https://mern-admin-dashboard-phi.vercel.app", credentials: true }));
-app.use(cors({ origin: "https://front-end-lemon-seven.vercel.app", credentials: true }));
+// app.use(cors({ origin: "https://front-end-lemon-seven.vercel.app", credentials: true }));
 //  built-in middleware to handle urlencoded data
 app.use(express.urlencoded({extended: false}))
 
