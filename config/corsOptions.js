@@ -1,8 +1,8 @@
 // const { options } = require('../routes/root');
 // const allowedOrigins = require('./allowedOrigins')
 const allowedOrigins = [
-    'http://localhost:3000',
-    'http://localhost:3001',
+    'https://front-end-lemon-seven.vercel.app',
+    'https://mern-admin-dashboard-phi.vercel.app',
 ];
 
 // const allowedOrigins = [
