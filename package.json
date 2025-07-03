@@ -2,9 +2,9 @@
   "name": "back-end",
   "version": "1.0.0",
   "main": "server.js",
-  "scripts": {
-    "start": "node server",
-    "dev": "nodemon server"
+   "scripts": {
+    "dev": "vercel dev",
+    "build": "ncc build api/server.js -o .vercel/output/functions/api/server.js"
   },
   "keywords": [],
   "author": "",
