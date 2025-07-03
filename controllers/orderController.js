@@ -38,8 +38,8 @@ const payment = async (req, res, id, quantity, username) => {
       quantity: quantity, // Outside price_data
   }],
     mode: "payment",
-    success_url: `https://front-end-lemon-seven.vercel.app/success/${id._id}?username=${username}`,
-    cancel_url: `https://front-end-lemon-seven.vercel.app/cancel/${id._id}?username=${username}`,
+    success_url: `http://localhost:3001/success/${id._id}?username=${username}`,
+    cancel_url: `http://localhost:3001/cancel/${id._id}?username=${username}`,
   })
   console.log(session.id)
   return {id:session.id};

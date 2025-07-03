@@ -12,6 +12,7 @@ const handleLogin = async ( req, res) => {
       
     if(!foundUser) return res.sendStatus(401); //Unauthorized
     // evaluate password
+    console.log(foundUser.username)
     const match = await bcrypt.compare(password, foundUser.password)
     if(match){
         const roles = Object.values(foundUser.roles)
@@ -24,7 +25,7 @@ const handleLogin = async ( req, res) => {
                 }
             },
             process.env.ACCESS_TOKEN_SECRET,
-            {expiresIn: '30s'}
+            {expiresIn: '60s'}
         );
         const refreshToken = jwt.sign(
            {"identifier": foundUser.email || foundUser.username},
@@ -32,14 +33,25 @@ const handleLogin = async ( req, res) => {
             {expiresIn: '1d'}
         );
         // Saving refreshToken with current user
-        foundUser.refreshToken = refreshToken;
+        // foundUser.refreshToken = refreshToken;
+        // const accessToken = foundUser.accessToken;
         // const result = await foundUser.save();
         res.cookie(
             'jwt', refreshToken, { httpOnly: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 }); // secure: true
-        res.json({ accessToken });
+            res.json({ accessToken,username:foundUser.username });
+        // res.json({ accessToken });
     }else {
         res.sendStatus(401)
     }
 }
 
-module.exports = { handleLogin };
+const checkToken = async (res, req) => {
+    const { authToken } = req.body
+    console.log(req.body)
+    const foundUser = await User.findOne(authToken).exec()
+        if(!foundUser) return res.sendStatus(403);
+
+} 
+
+
+module.exports = { handleLogin, checkToken };

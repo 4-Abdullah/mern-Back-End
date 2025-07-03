@@ -1,6 +1,5 @@
 const Product = require('../model/Product')
 const upload = require('../middleware/imageUploadMiddleware')
-
 const getAllProducts = async (req, res) => {
     console.log("Incoming Request Body:", req.body);
     const limit = parseInt(req.query.limit, 10) || 1; // Default to 1 product per page
@@ -8,11 +7,6 @@ const getAllProducts = async (req, res) => {
     
     const Products = await Product.find();
     if (!Products) return res.status(204).json({ 'message': "No Products found" });
-    // if(req.query.search){
-    //     const filterProducts = Products.filter(product => product.productname.includes(req.query.search))
-    //         res.json(filterProducts)
-    //         // return    
-    // }
     if(req.query.limit  && req.query.offset){
         const limitproducts = await Product.find()
         .skip(offset)

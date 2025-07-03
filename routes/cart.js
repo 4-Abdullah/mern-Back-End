@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const cartController = require('../../controllers/cartController')
-const ROLES_LIST = require('../../config/roles_list')
-const verfiyRoles = require('../../middleware/verifyRoles')
+const cartController = require('../controllers/cartController')
+const ROLES_LIST = require('../config/roles_list')
+const verfiyRoles = require('../middleware/verifyRoles')
 
 router.route('/')
     .get(cartController.getCart)

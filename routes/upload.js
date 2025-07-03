@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const upload = require('../../middleware/imageUploadMiddleware')
-const ROLES_LIST = require('../../config/roles_list')
-const verfiyRoles = require('../../middleware/verifyRoles')
+const upload = require('../middleware/imageUploadMiddleware')
+const ROLES_LIST = require('../config/roles_list')
+const verfiyRoles = require('../middleware/verifyRoles')
 
 
 router.post(
